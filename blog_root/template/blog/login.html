@@ -3,11 +3,34 @@
 
 {% block content %}
 
-<div class="col-10  my-5">
+<div class="col-12  my-5">
   <h1 class="text-success Rounded my-5">
     Login
   </h1>
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-lg-6 m-auto p-5 text-success-emphasis bg-success-subtle border border-success-subtle rounded-4">
+        <p class="h4 py-3" >Log Into Your Account.</p>
 
+        <form action="" method="POST" novalidate> {% csrf_token %}
+          {% for fm in form %}
+          <div class="form-group">
+            {{fm.label_tag}} {{fm}} <small class="text-warning-subtle" >{{fm.errors|striptags}}</small>  <br><br>
+          </div>
+          {% endfor %}
+          <input type="submit" value="LOG IN" class="btn btn-success rounded-5 w-100">
+
+          {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+            <p class="alert alert-danger my-3" >{{error}}</p>
+            {% endfor %}
+          {% endif %}  
+
+        </form><br>
+
+      </div>
+    </div>
+  </div>
 </div>
 
 {% endblock content %}
