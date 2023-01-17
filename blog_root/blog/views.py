@@ -4,6 +4,8 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from .models import Blog
 from django.contrib.auth.models import Group
+from django.contrib.auth.models import User
+
 # Create your views here.
 
 # Home
@@ -12,9 +14,10 @@ def home(request):
     return render(request, 'blog/home.html', {'all_blog': all_blog})
 
 
-# About
-def about(request):
-    return render(request, 'blog/about.html')
+# User Profile
+def user_profile(request):
+
+    return render(request, 'blog/userprofile.html')
 
 
 # SingUp
