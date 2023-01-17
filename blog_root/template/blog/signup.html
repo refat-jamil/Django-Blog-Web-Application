@@ -1,6 +1,23 @@
 {% extends 'blog/base.html' %}
 {% load static %}
 
+
+{% block msg %}  
+{% if messages %}
+{% for mg in messages %}
+<div class="pt-5"></div>
+<div class="pt-5"></div>
+
+<div {% if mg.tags %} class="alert alert-{{mg.tags}} alert-dismissible fade show" role ="alert" {% endif %}><strong>{{mg}}</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"> </button>
+</div>
+{% endfor %}
+{% endif %}
+{% endblock msg %}
+
+
+
+
 {% block content %}
 
 <div class="col-12  my-5">
@@ -8,15 +25,9 @@
     Signup
   </h1>
 
-  {% if messages %}
-  {% for message in messages %}
-  <p {% if message.tags %} class="alert alert-{{message.tags}} mb-5 {% endif %} ">{{message}} </p>
-  {% endfor %}
-{% endif %}
-
   <div class="container">
     <div class="row mt-5">
-      <div class="col-lg-6 m-auto p-5 text-success-emphasis bg-success-subtle border border-success-subtle rounded-4">
+      <div class="shadow col-lg-6 m-auto p-5 text-success-emphasis bg-success-subtle rounded-4">
         <p class="h4 py-3" >Create a new account.</p>
 
         <form action="" method="POST" novalidate> {% csrf_token %}

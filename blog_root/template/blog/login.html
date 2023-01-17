@@ -7,9 +7,15 @@
   <h1 class="text-success Rounded my-5">
     Login
   </h1>
+  {% if messages %}
+  {% for message in messages %}
+  <p {% if message.tags %} class="alert alert-{{message.tags}} mb-5 {% endif %} ">{{message}} </p>
+  {% endfor %}
+{% endif %}
+
   <div class="container">
     <div class="row mt-5">
-      <div class="col-lg-6 m-auto p-5 text-success-emphasis bg-success-subtle border border-success-subtle rounded-4">
+      <div class="shadow col-lg-6 m-auto p-5 text-success-emphasis bg-success-subtle  rounded-4">
         <p class="h4 py-3" >Log Into Your Account.</p>
 
         <form action="" method="POST" novalidate> {% csrf_token %}

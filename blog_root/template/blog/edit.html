@@ -1,0 +1,17 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="col-10  my-5">
+  <h1 class="text-success Rounded my-5">
+    Dashboard / Edit Post
+  </h1>
+
+  <form action="" method="POST" novalidate> {% csrf_token %}
+    {{fm.as_p}}
+    <input type="submit" value="POST" class="btn btn-success">
+    <a href="{% url 'dashboard' %} " class="btn btn-danger">Cancel</a>
+  </form><br>
+
+{% endblock content %}

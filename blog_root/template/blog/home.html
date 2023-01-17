@@ -1,6 +1,23 @@
 {% extends 'blog/base.html' %}
 {% load static %}
 
+
+
+{% block msg %}  
+  {% if messages %}
+  {% for mg in messages %}
+  <div class="pt-5"></div>
+  <div class="pt-5"></div>
+
+  <div {% if mg.tags %} class="alert alert-{{mg.tags}} alert-dismissible fade show" role ="alert" {% endif %}><strong>{{mg}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"> </button>
+  </div>
+  {% endfor %}
+  {% endif %}
+{% endblock msg %}
+
+
+
 {% block content %}
 
 <div class="col-10  my-5">
@@ -9,7 +26,7 @@
   </h1>
 
   {% for blog in all_blog %}
-  <div class="jumbotron p-3  text-success  border rounded-3">
+  <div class="jumbotron p-3 text-success border rounded-3">
     <div class="container" >
       <a href="#" class="display-5 h3 disabled-link">{{blog.title}}</a>
       <p class="text-dark">{{blog.description}}</p>
