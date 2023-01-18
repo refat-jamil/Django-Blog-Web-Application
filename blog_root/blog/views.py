@@ -1,10 +1,11 @@
-from django.shortcuts import render, HttpResponseRedirect
-from .forms import SingUpForm, LoginForm, BlogPostFrom
+from django.shortcuts import render, HttpResponseRedirect, redirect
+from .forms import SingUpForm, LoginForm, BlogPostFrom, UserProfileUpdateForm, UserImgUpdateForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from .models import Blog
 from django.contrib.auth.models import Group
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -16,8 +17,29 @@ def home(request):
 
 # User Profile
 def user_profile(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            p_form = UserProfileUpdateForm(request.POST, instance=request.user)
+            i_form = UserImgUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+            if p_form.is_valid() and i_form.is_valid():
+                p_form.save()
+                i_form.save()
+                messages.success(request, 'Successfully Update!')
+                return redirect('userprofile')
+        else:
+            p_form = UserProfileUpdateForm(instance=request.user)
+            i_form = UserImgUpdateForm()
 
-    return render(request, 'blog/userprofile.html')
+        context = {
+            'p_form':p_form,
+            'i_form':i_form
+        }
+        return render(request, 'blog/userprofile.html', context)
+    else:
+        messages.warning(request, 'You must log in first.')
+        return HttpResponseRedirect('/login/')
+
+    
 
 
 # SingUp
@@ -57,8 +79,15 @@ def user_login(request):
 # Dashboard
 def dashboard(request):
     if request.user.is_authenticated:
-        blogs = Blog.objects.all()
-        return render(request, 'blog/dashboard.html', {'blogs':blogs})
+        blogs = {'blog' : Blog.objects.all()}
+        for i in blogs['blog']:
+            print(type(i.user_id))
+            if request.user.id == i.user_id:
+                context = {'blogs':Blog.objects.filter(user_id = request.user.id)}
+            else:    
+                context = {'blogs':Blog.objects.filter(user_id = request.user.id)}
+
+        return render(request, 'blog/dashboard.html', context)
     else:
         messages.warning(request, 'You must log in first.')
         return HttpResponseRedirect('/login/')
@@ -76,11 +105,9 @@ def add_post(request):
         if request.method == 'POST':
             fm = BlogPostFrom(request.POST)
             if fm.is_valid():
-                ti = fm.cleaned_data['title']
-                dis = fm.cleaned_data['description']
-                blog = Blog(title= ti, description= dis)
+                blog = fm.save(commit=False)
+                blog.user = request.user
                 blog.save()
-                fm = BlogPostFrom()
                 return HttpResponseRedirect('/')
 
         else:
@@ -121,3 +148,4 @@ def blog_delete(request, id):
         return HttpResponseRedirect('/dashboard/')          
     else:
         return HttpResponseRedirect('/login/')
+

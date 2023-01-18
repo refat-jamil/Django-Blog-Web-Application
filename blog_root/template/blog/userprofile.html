@@ -26,9 +26,29 @@
   <div class="container">
     <div class="row mt-5">
       <div class="shadow col-lg-10 p-5 text-success-emphasis  rounded-4">
-        <img class="rounded-circle" style="width: 200px;" src="{{ user.profileuser.image.url }}">
-        <p class="h2 px-3 pt-3 text-uppercase" >{{ user.first_name }} {{ user.last_name }}</p>
-        <p class="h5 px-3" >{{ user.username }} </p>
+        <div class="container">
+          <div class="row">
+            <div class="col-4">
+              <img class="rounded-circle" style="width: 200px;" src="{{ user.profile.image.url }}">
+              <p class="h2 px-3 pt-3 text-uppercase" >{{ user.first_name }} {{ user.last_name }}</p>
+              <p class="h5 px-3" >{{ user.email }} </p>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-7">
+              <form action="" method="POST" novalidate> {% csrf_token %}
+                {% for i in p_form %}
+                {{i.label_tag}} {{i}} <small class="text-warning-emphasis" >{{i.errors|striptags}}</small>  <br><br>
+                {% endfor %} 
+                {{i_form.as_p}}
+
+
+                <br><br>
+                <input type="submit" value="Done">
+              </form>
+            </div>
+          </div>
+        </div>
+
   
       </div>
     </div>
