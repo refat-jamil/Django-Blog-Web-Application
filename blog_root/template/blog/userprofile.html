@@ -35,7 +35,7 @@
             </div>
             <div class="col-1"></div>
             <div class="col-7">
-              <form action="" method="POST" novalidate> {% csrf_token %}
+              <form action="" method="POST" enctype="multipart/form-data" novalidate> {% csrf_token %}
                 {% for i in p_form %}
                 {{i.label_tag}} {{i}} <small class="text-warning-emphasis" >{{i.errors|striptags}}</small>  <br><br>
                 {% endfor %} 
@@ -43,7 +43,7 @@
 
 
                 <br><br>
-                <input type="submit" value="Done">
+                <input type="submit" class="btn btn-outline-success" value="Update">
               </form>
             </div>
           </div>

@@ -37,6 +37,9 @@
         <th scope="col" style="width: auto;">ID</th>
         <th scope="col" style="width: auto;">Title</th>
         <th scope="col" style="width: auto;">Description</th>
+        <th scope="col" style="width: auto;">Published at</th>
+        <th scope="col" style="width: auto;">Last Update</th>
+
         <th scope="col" style="width: 15%;">Action</th>
       </tr>
     </thead>
@@ -46,6 +49,9 @@
         <th scope="row">{{blog.id}}</th>
         <td>{{blog.title}}</td>
         <td class="table-active">{{blog.description}}</td>
+        <td>{{blog.create_at}}</td>
+        <td>{{blog.update_at}}</td>
+
         <td class="text-center">
           <a href="{% url 'edit' blog.id %}" class="btn btn-warning btn-sm">Edit</a>
           {% if perms.blog.delete_blog%}

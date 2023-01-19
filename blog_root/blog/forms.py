@@ -52,4 +52,5 @@ class UserImgUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['image']
+        labels = {'image': 'Change Your Profile Picture'}
         

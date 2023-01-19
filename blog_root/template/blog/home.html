@@ -26,11 +26,21 @@
   </h1>
 
   {% for blog in all_blog %}
-  <div class="jumbotron p-3 text-success border rounded-3">
+  <div class="jumbotron p-3  border rounded-3">
     <div class="container" >
-      <a href="#" class="display-5 h3 disabled-link">{{blog.title}}</a>
-      <p class="text-uppercase" >{{ blog.user }}</p>
-      <p class="text-dark">{{blog.description}}</p>
+      <div class="row">
+        <div class="col-1">
+          <img class="rounded-circle article-img" src="{{ blog.user.profile.image.url }}">
+
+        </div>
+        <div class="col-11">
+          <p class="h4 text-uppercase text-success font-weight-bold" >{{ blog.user.first_name }} {{ blog.user.last_name }}</p>
+          <p href="#" class="display-5 font-weight-bold h2">{{blog.title}}</p>
+          <p class="text-muted" >Published at {{ blog.create_at }} || Last Update {{ blog.update_at }}</p>
+          <p class="text-dark">{{blog.description}}</p>
+        </div>
+      </div>
+
     </div>
   </div><br>
   {% endfor %}
