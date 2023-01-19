@@ -79,15 +79,8 @@ def user_login(request):
 # Dashboard
 def dashboard(request):
     if request.user.is_authenticated:
-        blogs = {'blog' : Blog.objects.all()}
-        for i in blogs['blog']:
-            print(type(i.user_id))
-            if request.user.id == i.user_id:
-                context = {'blogs':Blog.objects.filter(user_id = request.user.id)}
-            else:    
-                context = {'blogs':Blog.objects.filter(user_id = request.user.id)}
-
-        return render(request, 'blog/dashboard.html', context)
+        blogs =  Blog.objects.filter(user=request.user)
+        return render(request, 'blog/dashboard.html', {'blogs':blogs})
     else:
         messages.warning(request, 'You must log in first.')
         return HttpResponseRedirect('/login/')
