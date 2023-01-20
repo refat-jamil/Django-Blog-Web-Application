@@ -1,0 +1,66 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+
+{% block msg %}  
+  {% if messages %}
+  {% for mg in messages %}
+  <div class="pt-5"></div>
+  <div class="pt-5"></div>
+
+  <div {% if mg.tags %} class="alert alert-{{mg.tags}} alert-dismissible fade show" role ="alert" {% endif %}><strong>{{mg}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"> </button>
+  </div>
+  {% endfor %}
+  {% endif %}
+{% endblock msg %}
+
+
+
+{% block content %}
+
+<div class="col-12  my-5">
+  <h1 class="text-success Rounded my-5">
+    Profile
+  </h1>
+  <div class="container">
+    <div class="row mt-5">
+      <div class="shadow col-lg-10 p-5 text-success-emphasis  rounded-4">
+        <div class="container">
+          <div class="row">
+            <div class="col-4">
+              <img class="rounded-circle" style="width: 200px;" src="{{ user.profile.image.url }}">
+              <p class="h2 px-3 pt-3 text-uppercase" >{{ user.first_name }} {{ user.last_name }}</p>
+              <p class="h5 px-3" >{{ user.email }} </p>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-7">
+
+                <p class="text-center h5">Information</p><br>
+                <table class="table table-user-information">
+                    <tbody>
+                        <tr>        
+                            <td>
+                                <strong>
+                                    Name                                                
+                                </strong>
+                            </td>
+                            <td class="text-dark">
+                                {{ user.first_name }} {{ user.last_name }}      
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+     
+            </div>
+          </div>
+        </div>
+
+  
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% endblock content %}

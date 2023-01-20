@@ -2,10 +2,10 @@ from django.shortcuts import render, HttpResponseRedirect, redirect
 from .forms import SingUpForm, LoginForm, BlogPostFrom, UserProfileUpdateForm, UserImgUpdateForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from .models import Blog
+from .models import Blog, Profile
 from django.contrib.auth.models import Group
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 
@@ -40,6 +40,21 @@ def user_profile(request):
         return HttpResponseRedirect('/login/')
 
     
+#Profile
+def profile(request, id):
+    if id == 1:
+        messages.warning(request, 'User Does Not Exist')
+        return redirect('home')
+    else:
+        try:
+            if id == request.user.id:
+                return HttpResponseRedirect('/userprofile/')
+            else:    
+                user = User.objects.get(pk=id)
+        except ObjectDoesNotExist:
+            messages.warning(request, 'User Does Not Exist')
+            return redirect('home')
+    return render(request, 'blog/profile.html',{'user':user})
 
 
 # SingUp
