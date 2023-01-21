@@ -28,13 +28,13 @@
       <div class="shadow col-lg-10 p-5 text-success-emphasis  rounded-4">
         <div class="container">
           <div class="row">
-            <div class="col-4">
+            <div class="col-sm-4">
               <img class="rounded-circle" style="width: 200px;" src="{{ user.profile.image.url }}">
               <p class="h2 px-3 pt-3 text-uppercase" >{{ user.first_name }} {{ user.last_name }}</p>
-              <p class="h5 px-3" >{{ user.email }} </p>
+              <p class="h5 px-3" >{{ user.username }} </p>
             </div>
-            <div class="col-1"></div>
-            <div class="col-7">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-7">
               <form action="" method="POST" enctype="multipart/form-data" novalidate> {% csrf_token %}
                 {% for i in p_form %}
                 {{i.label_tag}} {{i}} <small class="text-warning-emphasis" >{{i.errors|striptags}}</small>  <br><br>
@@ -45,6 +45,7 @@
                 <br><br>
                 <input type="submit" class="btn btn-outline-success" value="Update">
               </form>
+              
             </div>
           </div>
         </div>

@@ -76,9 +76,19 @@ a.article-title:hover {
   font-size: 2.5rem;
 }
 
-.fifty-chars {
-  width: 100ch;
+
+
+.demo-1 {
   overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.p-sa{
+  font-size: 20px;
+}
+
+.p-s{
+  font-size: 18px;
 }

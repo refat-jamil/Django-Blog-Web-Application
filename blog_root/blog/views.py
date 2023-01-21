@@ -14,6 +14,15 @@ def home(request):
     all_blog = Blog.objects.all()
     return render(request, 'blog/home.html', {'all_blog': all_blog})
 
+# Blog
+def blog(request, id):
+    try:  
+        blog = Blog.objects.get(pk=id)
+    except ObjectDoesNotExist:
+            messages.warning(request, 'Blog Does Not Exist')
+            return redirect('home')
+    return render(request, 'blog/blog.html', {'blog': blog})    
+
 
 # User Profile
 def user_profile(request):
