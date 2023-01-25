@@ -16,12 +16,22 @@ def home(request):
 
 # Blog
 def blog(request, id):
-    try:  
-        blog = Blog.objects.get(pk=id)
+    try:
+        context = {
+    'blog' : Blog.objects.get(pk=id),
+    'all_blog' : Blog.objects.all(),
+}
     except ObjectDoesNotExist:
             messages.warning(request, 'Blog Does Not Exist')
             return redirect('home')
-    return render(request, 'blog/blog.html', {'blog': blog})    
+    return render(request, 'blog/blog.html', context)
+
+def category(request, cat):
+    context = {
+        'category_blog' : Blog.objects.filter(category = cat),
+        'all_blog' : Blog.objects.all(),
+    }
+    return render(request, 'blog/category.html', context)    
 
 
 # User Profile
@@ -41,7 +51,8 @@ def user_profile(request):
 
         context = {
             'p_form':p_form,
-            'i_form':i_form
+            'i_form':i_form,
+            'all_blog' : Blog.objects.all(),
         }
         return render(request, 'blog/userprofile.html', context)
     else:
@@ -59,11 +70,14 @@ def profile(request, id):
             if id == request.user.id:
                 return HttpResponseRedirect('/userprofile/')
             else:    
-                user = User.objects.get(pk=id)
+                context = {
+                    'user' : User.objects.get(pk=id),
+                    'all_blog' : Blog.objects.all(),
+                }
         except ObjectDoesNotExist:
             messages.warning(request, 'User Does Not Exist')
             return redirect('home')
-    return render(request, 'blog/profile.html',{'user':user})
+    return render(request, 'blog/profile.html',context)
 
 
 # SingUp
@@ -77,7 +91,11 @@ def user_signup(request):
             user.groups.add(group)
     else:    
         fm = SingUpForm()
-    return render(request, 'blog/signup.html', {'form':fm})     
+    context = {
+                    'form':fm,
+                    'all_blog' : Blog.objects.all(),
+                }
+    return render(request, 'blog/signup.html', context)     
 
 
 # LogIn
@@ -95,7 +113,11 @@ def user_login(request):
                     return HttpResponseRedirect('/dashboard/')
         else:            
             fm = LoginForm()
-        return render(request, 'blog/login.html', {'form':fm})
+        context = {
+                    'form':fm,
+                    'all_blog' : Blog.objects.all(),
+                }
+        return render(request, 'blog/login.html', context)
     else:
         return HttpResponseRedirect('/dashboard/')        
 
@@ -104,7 +126,11 @@ def user_login(request):
 def dashboard(request):
     if request.user.is_authenticated:
         blogs =  Blog.objects.filter(user=request.user)
-        return render(request, 'blog/dashboard.html', {'blogs':blogs})
+        context = {
+                    'blogs':blogs,
+                    'all_blog' : Blog.objects.all(),
+                }
+        return render(request, 'blog/dashboard.html', context)
     else:
         messages.warning(request, 'You must log in first.')
         return HttpResponseRedirect('/login/')
@@ -125,11 +151,15 @@ def add_post(request):
                 blog = fm.save(commit=False)
                 blog.user = request.user
                 blog.save()
-                return HttpResponseRedirect('/')
+                return HttpResponseRedirect('/dashboard/')
 
         else:
             fm = BlogPostFrom()
-        return render(request, 'blog/addpost.html', {'fm':fm})
+        context = {
+                    'fm':fm,
+                    'all_blog' : Blog.objects.all(),
+                }
+        return render(request, 'blog/addpost.html', context)
     else:
         return HttpResponseRedirect('/login/')
 
@@ -143,13 +173,16 @@ def blog_edit(request, id):
             if fm.is_valid():
                 fm.save()
                 messages.success(request, 'Successfully Update!')
-                return HttpResponseRedirect('/')
+                return HttpResponseRedirect('/dashboard/')
 
         else:
             pi = Blog.objects.get(pk=id)
             fm = BlogPostFrom(instance=pi)        
-
-        return render(request, 'blog/edit.html', {'fm':fm})          
+        context = {
+                    'fm':fm,
+                    'all_blog' : Blog.objects.all(),
+                }
+        return render(request, 'blog/edit.html', context)          
     else:
         return HttpResponseRedirect('/login/')
 

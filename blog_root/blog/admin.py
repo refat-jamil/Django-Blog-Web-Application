@@ -4,7 +4,7 @@ from .models import Blog, Profile
 
 @admin.register(Blog)
 class BlogModelAdmin(admin.ModelAdmin):
-    list_display = ['id', 'title', 'description']
+    list_display = ['id', 'title', 'description', 'category', 'create_at', 'update_at']
 
 @admin.register(Profile)
 class ProfileUserModelAdmin(admin.ModelAdmin):

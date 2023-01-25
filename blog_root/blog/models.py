@@ -11,8 +11,16 @@ class Profile(models.Model):
         return f'{self.user.username} Profile'
 
 
+
+category =(
+    ("Python", "Python"),
+    ("DevOps", "DevOps"),
+    ("Linux", "Linux"),
+    ("Django", "Django"),
+)
 class Blog(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
+    category = models.CharField(max_length=100, choices=category)
     title = models.CharField(max_length=150)
     description = models.TextField()
     create_at = models.DateTimeField(auto_now_add=True)

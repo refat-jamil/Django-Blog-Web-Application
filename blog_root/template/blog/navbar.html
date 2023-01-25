@@ -14,9 +14,11 @@
             Category
           </a>
           <ul class="dropdown-menu bg-success-subtle">
-            <li><a class="dropdown-item" href="{% url 'home' %}">Python</a></li>
-            <li><a class="dropdown-item" href="{% url 'home' %}">DevOps</a></li>
-            <li><a class="dropdown-item" href="{% url 'home' %}">Linux</a></li>
+            <li><a class="dropdown-item" href="{% url 'category' 'Python' %}">Python</a></li>
+            <li><a class="dropdown-item" href="{% url 'category' 'Django' %}">Django</a></li>
+            <li><a class="dropdown-item" href="{% url 'category' 'DevOps' %}">DevOps</a></li>
+            <li><a class="dropdown-item" href="{% url 'category' 'Linux' %}">Linux</a></li>
+
           </ul>
         </li>
         {% if request.user.is_authenticated %}
