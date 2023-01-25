@@ -7,7 +7,8 @@ urlpatterns = [
     path('category/<cat>', views.category, name='category'),
 
 
-    path('userprofile/', views.user_profile, name='userprofile'),
+    path('userprofile/<int:id>', views.user_profile, name='userprofile'),
+    
     path('profile/<int:id>', views.profile, name='profile'),
 
     path('signup/', views.user_signup, name='signup'),

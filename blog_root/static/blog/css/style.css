@@ -1,19 +1,21 @@
 .disabled-link:link {
-    background-color: transparent;
-    text-decoration: none;
+  color: rgb(0, 0, 0);
+  background-color: transparent;
+  text-decoration: none;
   }
 .disabled-link:visited {
-    background-color: transparent;
-    text-decoration: none;
+  color: rgb(0, 0, 0);
+  background-color: transparent;
+  text-decoration: none
   }
 .disabled-link:hover {
-    background-color: transparent;
-    text-decoration: none;
+  color: #0053ee;
+  background-color: transparent;
+  text-decoration: underline;
   }
 .disabled-link:active {
-    color: rgb(30, 163, 30);
-    background-color: transparent;
-    text-decoration: none;
+  background-color: transparent;
+  text-decoration: underline;
   }  
 
 

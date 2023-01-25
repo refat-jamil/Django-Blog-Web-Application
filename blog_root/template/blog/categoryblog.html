@@ -22,7 +22,7 @@
 
 <div class="col-sm-9  my-5">
   <h1 class="text-success Rounded my-5">
-    Home
+    {{category}}
   </h1>
 
   {% if category_blog %}
@@ -34,6 +34,8 @@
       <img class="rounded-circle img-fluid article-img" src="{{ blog.user.profile.image.url }}">
       <a class="mr-2 disabled-link text-dark " href="{% url 'profile' blog.user.id %}">{{ blog.user.first_name }} {{ blog.user.last_name }}</a>
       <small class="text-muted"> &centerdot; {{ blog.create_at|date:"d F, Y" }}</small>
+      <a class="text-muted disabled-link" href="{% url 'category' blog.category %}"> &centerdot; {{ blog.category }}</a>
+
     </div> <br>
     <p><a class="disabled-link text-success h2" href="{% url 'blog' blog.id %}">{{ blog.title }}</a></p>
     <p class="article-content p-s demo-1">{{blog.description}}</p>

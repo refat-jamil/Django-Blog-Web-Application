@@ -14,6 +14,7 @@ def home(request):
     all_blog = Blog.objects.all()
     return render(request, 'blog/home.html', {'all_blog': all_blog})
 
+
 # Blog
 def blog(request, id):
     try:
@@ -26,16 +27,19 @@ def blog(request, id):
             return redirect('home')
     return render(request, 'blog/blog.html', context)
 
+
+#Blog category's
 def category(request, cat):
     context = {
         'category_blog' : Blog.objects.filter(category = cat),
         'all_blog' : Blog.objects.all(),
+        'category' : cat
     }
-    return render(request, 'blog/category.html', context)    
+    return render(request, 'blog/categoryblog.html', context)    
 
 
 # User Profile
-def user_profile(request):
+def user_profile(request, id):
     if request.user.is_authenticated:
         if request.method == 'POST':
             p_form = UserProfileUpdateForm(request.POST, instance=request.user)
@@ -44,7 +48,7 @@ def user_profile(request):
                 p_form.save()
                 i_form.save()
                 messages.success(request, 'Successfully Update!')
-                return redirect('userprofile')
+                return redirect('userprofile', id=id)
         else:
             p_form = UserProfileUpdateForm(instance=request.user)
             i_form = UserImgUpdateForm()
@@ -53,6 +57,7 @@ def user_profile(request):
             'p_form':p_form,
             'i_form':i_form,
             'all_blog' : Blog.objects.all(),
+            'user_blog' : Blog.objects.filter(user=id)
         }
         return render(request, 'blog/userprofile.html', context)
     else:
@@ -68,11 +73,12 @@ def profile(request, id):
     else:
         try:
             if id == request.user.id:
-                return HttpResponseRedirect('/userprofile/')
+                return redirect('userprofile', id=id)
             else:    
                 context = {
                     'user' : User.objects.get(pk=id),
                     'all_blog' : Blog.objects.all(),
+                    'user_blog' : Blog.objects.filter(user=id)
                 }
         except ObjectDoesNotExist:
             messages.warning(request, 'User Does Not Exist')
@@ -142,7 +148,7 @@ def user_logout(request):
     return HttpResponseRedirect('/')
 
 
-
+# Add New Blog Post
 def add_post(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
@@ -164,7 +170,7 @@ def add_post(request):
         return HttpResponseRedirect('/login/')
 
 
-
+# Edit Blog 
 def blog_edit(request, id):
     if request.user.is_authenticated:
         if request.method == 'POST':
@@ -187,7 +193,7 @@ def blog_edit(request, id):
         return HttpResponseRedirect('/login/')
 
 
-
+# Delete Blog
 def blog_delete(request, id):
     if request.user.is_authenticated:
         if request.method == 'POST':
@@ -198,4 +204,3 @@ def blog_delete(request, id):
         return HttpResponseRedirect('/dashboard/')          
     else:
         return HttpResponseRedirect('/login/')
-

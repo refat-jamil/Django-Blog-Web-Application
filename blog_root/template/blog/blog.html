@@ -32,6 +32,8 @@
       <a class="mr-2 disabled-link text-dark " href="{% url 'profile' blog.user.id %}">{{ blog.user.first_name }} {{ blog.user.last_name }}</a>
       <small class="text-muted"> &centerdot;  Published on {{ blog.create_at|date:"d F, Y" }}</small>
       <small class="text-muted"> &#124; Last Updated on {{ blog.update_at|date:"d F, Y" }}</small>
+      <a class="text-muted disabled-link" href="{% url 'category' blog.category %}"> &centerdot; {{ blog.category }}</a>
+
 
     </div> <br>
 
