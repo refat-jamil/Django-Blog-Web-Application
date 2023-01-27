@@ -39,7 +39,7 @@ python3 manage.py createsuperuser
 ```
 Go to Django Admin Site create a Group name 'Author' and add these permissions.
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://github.com/rifatjamil54/Django-Blog-Site/blob/main/Screenshot%20from%202023-01-27%2012-50-59.png)
 
 Run server using
 ```bash
