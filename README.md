@@ -13,6 +13,12 @@ git clone https://github.com/rifatjamil54/Django-Blog-Site.git
 ```
 
 * Create and Activate virtual environment.
+* 
+``bash
+pip install virtualenv
+virtualenv venv 
+source venv/bin/activate
+```
 
 * Then following command-
 
