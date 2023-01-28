@@ -23,12 +23,13 @@ source venv/bin/activate
 * Then following command-
 
 ```bash
+cd Django-Blog-Site/
 pip install -r requirements.txt
 ```
 * Go to project directory
 
 ```bash
-cd Django-Blog-Site/blog_root/
+cd blog_root/
 ```
 
 * Migrate database
