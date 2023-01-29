@@ -29,15 +29,14 @@ pip install -r requirements.txt
 * Go to project directory
 
 ```bash
-cd blog_root/
+cd blog_project/
 ```
 
 * Migrate database
 
 ```bash
-python3 manage.py makemigrations
-python3 manage.py migrate
-python manage.py migrate --run-syncdb
+python manage.py makemigrations
+python manage.py migrate
 ```
 * Create superuser
 
