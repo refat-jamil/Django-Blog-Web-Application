@@ -51,7 +51,7 @@ python3 manage.py runserver
 
 * Go to Django Admin Site create a Group name 'Author' and add these permissions.
 
-![App Screenshot](https://github.com/rifatjamil54/Django-Blog-Site/blob/main/Screenshot%20from%202023-01-27%2012-50-59.png)
+![App Screenshot](https://github.com/rifatjamil54/Django-Blog-Site/blob/main/readme_img/Screenshot%20from%202023-01-27%2012-50-59.png)
 
 
 
