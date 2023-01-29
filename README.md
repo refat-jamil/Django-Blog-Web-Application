@@ -3,6 +3,10 @@
 
 A full featured django application.
 
+## Demo
+
+![demo](https://github.com/rifatjamil54/Django-Blog-Site/blob/main/readme_img/django_demo.gif)
+
 
 ## Installation
 
