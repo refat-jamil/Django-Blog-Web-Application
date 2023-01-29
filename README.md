@@ -27,7 +27,7 @@ source venv/bin/activate
 * Then following command-
 
 ```bash
-cd Django-Blog-Site/
+cd Django-Blog-Web-Application/
 pip install -r requirements.txt
 ```
 * Go to project directory
