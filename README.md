@@ -1,5 +1,5 @@
 
-# Django Blog Website
+# Django Blog Web Application
 
 A full featured django application.
 
@@ -8,9 +8,9 @@ A full featured django application.
 ![demo](https://github.com/rifatjamil54/Django-Blog-Site/blob/main/readme_img/django_demo.gif)
 
 
-## Installation
+## Setup
 
-* Install my-project with git
+* Clone my-project
 
 ```bash
 git clone https://github.com/rifatjamil54/Django-Blog-Site.git
