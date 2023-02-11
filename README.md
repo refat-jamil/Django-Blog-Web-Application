@@ -3,10 +3,13 @@
 
 A full featured django application.
 
-<li>An author can post the blog.</li>
-<li>Every blog has a category, author profile, publish date, and update date.</li>
-<li>The author can change their profile picture.</li>
-<li>Every user see the profile page, but only profile owner can update their profile information.</li>
+
+## features
+- User Singup, login and logout(Using the Django authentication system)
+- An author can post the blog.
+- Every blog has a category, author profile, publish date, and update date.
+- The author can change their profile picture.
+- Every user see the profile page, but only profile owner can update their profile information.
 
 ## Demo
 
