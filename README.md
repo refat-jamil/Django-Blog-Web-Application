@@ -4,7 +4,7 @@
 A full featured django application.
 
 
-## Features:
+## Features
 - User Singup, login and logout(Using the Django authentication system)
 - An author can post the blog.
 - Every blog has a category, author profile, publish date, and update date.
