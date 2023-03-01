@@ -18,7 +18,7 @@ def dashboard(request):
         blogs =  Blog.objects.filter(user=request.user).order_by('-id')
         context = {
                     'blogs':blogs,
-                    'all_blog' : Blog.objects.all()
+                    'all_blog' : Blog.objects.all(),
                 }
         return render(request, 'blog/dashboard.html', context)
     else:

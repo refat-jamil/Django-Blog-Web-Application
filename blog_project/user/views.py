@@ -59,7 +59,7 @@ def user_logout(request):
 
 
 
-# User Profile
+# view, edite Own User Profile
 def user_profile(request, id):
     if request.user.is_authenticated:
         if request.method == 'POST':
@@ -78,7 +78,9 @@ def user_profile(request, id):
             'p_form':p_form,
             'i_form':i_form,
             'all_blog' : Blog.objects.all(),
-            'user_blog' : Blog.objects.filter(user=id).order_by('-id')
+            'user_blog' : Blog.objects.filter(user=id).order_by('-id'),
+            'ip': request.session.get('ip', 0)
+
         }
         return render(request, 'user/userprofile.html', context)
     else:
@@ -87,7 +89,7 @@ def user_profile(request, id):
 
 
     
-#Profile
+# view all user Profile
 def profile(request, id):
     if id == 1:
         messages.warning(request, 'User Does Not Exist')
