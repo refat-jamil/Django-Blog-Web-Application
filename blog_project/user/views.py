@@ -79,7 +79,6 @@ def user_profile(request, id):
             'i_form':i_form,
             'all_blog' : Blog.objects.all(),
             'user_blog' : Blog.objects.filter(user=id).order_by('-id'),
-            'ip': request.session.get('ip', 0)
 
         }
         return render(request, 'user/userprofile.html', context)
