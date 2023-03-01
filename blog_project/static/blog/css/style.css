@@ -87,10 +87,28 @@ a.article-title:hover {
   -webkit-box-orient: vertical;
 }
 
+.demo-2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* number of lines to show */
+          line-clamp: 4; 
+  -webkit-box-orient: vertical;
+
+}
+
 .p-sa{
   font-size: 20px;
 }
 
 .p-s{
   font-size: 18px;
+}
+
+.profileSize{
+  width: 200px;
+}
+
+.table, th, td {
+  border: None;
 }

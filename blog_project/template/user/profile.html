@@ -29,7 +29,7 @@
         <div class="container">
           <div class="row">
             <div class="col-sm-4">
-              <img class="rounded-circle" style="width: 200px;" src="{{ user.profile.image.url }}">
+              <img class="rounded-circle profileSize" src="{{ user.profile.image.url }}" alt="Profile">
               <p class="h2 px-3 pt-3 text-uppercase" >{{ user.first_name }} {{ user.last_name }}</p>
               <p class="h5 px-3" >{{ user.username }} </p>
             </div>
@@ -83,7 +83,7 @@
   <div class="jumbotron p-3 shadow border rounded-3 px-4 py-4">
 
     <div class="">
-      <img class="rounded-circle img-fluid article-img" src="{{ blog.user.profile.image.url }}">
+      <img class="rounded-circle img-fluid article-img" src="{{ blog.user.profile.image.url }}" alt="Author Profile">
       <a class="mr-2 disabled-link" href="{% url 'profile' blog.user.id %}">{{ blog.user.first_name }} {{ blog.user.last_name }}</a>
       <small class="text-muted"> &centerdot; {{ blog.create_at|date:"d F, Y" }}</small>
       <a class="text-muted disabled-link" href="{% url 'category' blog.category %}"> &centerdot; {{ blog.category }}</a>
